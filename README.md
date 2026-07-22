@@ -60,7 +60,9 @@ numpy
 matplotlib
 seaborn
 wordcloud
-jupyter
+Plotly
+streamlit
+jupyter Notebook
 ```
 
 * ## &#x20;Author
