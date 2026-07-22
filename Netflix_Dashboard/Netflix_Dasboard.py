@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import numpy as np
 import streamlit as st
@@ -5,6 +6,11 @@ import plotly.express as px
 import plotly.graph_objects as go
 import matplotlib.pyplot as plt
 from wordcloud import WordCloud, STOPWORDS
+
+# Resolve paths relative to this script's own location, not the working
+# directory Streamlit happens to launch from — this keeps file loading
+# working no matter which folder the app is run/deployed from.
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # ----------------------------------------------------------------------------
 # PAGE CONFIG & THEME
@@ -72,7 +78,7 @@ PLOTLY_TEMPLATE.layout = go.Layout(
 # ----------------------------------------------------------------------------
 @st.cache_data
 def load_data():
-    df = pd.read_csv("netflix_movies.csv")
+    df = pd.read_csv(os.path.join(BASE_DIR, "netflix_movies.csv"))
 
     # Handle missing values
     df["director"] = df["director"].fillna("Unknown")
